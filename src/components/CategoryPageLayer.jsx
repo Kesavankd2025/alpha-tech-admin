@@ -759,19 +759,18 @@ const CategoryPageLayer = () => {
                 </button>
 
               </li>
-              <li className="nav-item" role="presentation">
+              {/* <li className="nav-item" role="presentation">
                 <button
                   className="nav-link fw-semibold text-primary-light radius-4 px-16 py-10"
                   id="pills-focus-profile-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#pills-focus-profile"
                   type="button"
-                // onClick={() => navigate("/category?type=childcategorylist")}
                 >
                   Child Category List
                 </button>
 
-              </li>
+              </li> */}
             </ul>
             <div className="tab-content" id="pills-tab-twoContent">
               <div

@@ -90,7 +90,7 @@ function CustomerOrderLayer() {
           _id: order._id,
           name: order.name || "N/A",
           date: formatDate(order.createdAt),
-          amount: order.total || "0",
+          amount: order.totalAmount || "0",
           type: order.paymentMode || "COD",
           originalData: order,
         }));

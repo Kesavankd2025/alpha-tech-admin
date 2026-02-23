@@ -385,7 +385,7 @@ const CreateProductListLayer = () => {
     const req = (val, key, msg) => { if (!val || (typeof val === "string" && !val.trim()) || (Array.isArray(val) && !val.length)) newErrors[key] = msg; };
     req(formData.category, "category", "Category is Required");
     req(formData.subCategory, "subCategory", "Sub Category is Required");
-    req(formData.childCategory, "childCategory", "Child Category is Required");
+    // req(formData.childCategory, "childCategory", "Child Category is Required");
     req(formData.brand, "brand", "Brand is Required");
     req(formData.productName, "productName", "Product Name is Required");
     req(formData.slug, "slug", "Slug is Required");
@@ -428,7 +428,8 @@ const CreateProductListLayer = () => {
   const buildFormData = () => {
     const fd = new FormData();
     fd.append("categoryId", formData.category); fd.append("subCategory", formData.subCategory);
-    fd.append("childCategory", formData.childCategory); fd.append("productName", formData.productName);
+    // fd.append("childCategory", formData.childCategory); 
+    fd.append("productName", formData.productName);
     fd.append("brand", formData.brand); fd.append("shortDescription", formData.shortDescription);
     fd.append("slug", formData.slug); fd.append("hsn", formData.hsn);
     fd.append("lowStockAlert", String(formData.lowStockAlert === true));
@@ -538,14 +539,14 @@ const CreateProductListLayer = () => {
                         </select>
                         {errors.subCategory && <div className="text-danger small">{errors.subCategory}</div>}
                       </div>
-                      <div className="col-lg-4 mb-3">
+                      {/* <div className="col-lg-4 mb-3">
                         <label className="form-label">Child Category</label>
                         <select name="childCategory" className="form-control" value={formData.childCategory} onChange={handleChange}>
                           <option value="">Select Child Category</option>
                           {childCategoryData?.map((c) => <option key={c._id} value={c._id}>{c.name}</option>)}
                         </select>
                         {errors.childCategory && <div className="text-danger small">{errors.childCategory}</div>}
-                      </div>
+                      </div> */}
                       <div className="col-lg-3 mb-3">
                         <label className="form-label">Brand</label>
                         <select name="brand" className="form-select" value={formData.brand} onChange={handleChange}>
