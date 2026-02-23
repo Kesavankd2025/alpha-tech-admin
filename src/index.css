@@ -442,3 +442,18 @@ tr.selected-row {
 .gstTable th {
   padding: 12px !important;
 }
+
+/* Override btn-primary focus outline after modal closes */
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Dropdown items hover color (e.g. Action menu in tables) */
+/* .dropdown-item:hover, */
+.dropdown-item:focus {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}

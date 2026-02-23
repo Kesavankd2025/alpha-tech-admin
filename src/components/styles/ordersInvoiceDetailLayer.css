@@ -2,9 +2,12 @@
   body * {
     visibility: hidden;
   }
-  #invoice-section, #invoice-section * {
+
+  #invoice-section,
+  #invoice-section * {
     visibility: visible;
   }
+
   #invoice-section {
     position: absolute;
     left: 0;
@@ -14,46 +17,48 @@
 }
 
 .fill-muted {
-    fill: #dc3545 !important;
-  }
+  fill: #2d3748 !important;
+}
 
-  .order-number__numbers {
-    color: #dc3545 !important
+.order-number__numbers {
+  color: #2d3748 !important
+}
 
-  }
-
-  .text-tracking-number {
-    font-weight: 800;
-  }
-
-
-  .fill-primary {
-    fill: #dc3545; /* blue */
-  }
-
-  .stroke-primary-foreground {
-    stroke: white;
-  }
+.text-tracking-number {
+  font-weight: 800;
+}
 
 
-  .order-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
+.fill-primary {
+  fill: #2d3748;
+  /* blue */
+}
 
-  .page-content h5 {
-    font-size: 1rem !important;
-  }
-  .order-status__status-info {
-    padding-top: 8% !important;
-    padding-bottom: 0% !important;
-  }
-  .order-status__progress {
-    padding-top: 11% !important;
-  }
+.stroke-primary-foreground {
+  stroke: white;
+}
 
-  .table th{
-    background-color: white;
-  }
+
+.order-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.page-content h5 {
+  font-size: 1rem !important;
+}
+
+.order-status__status-info {
+  padding-top: 8% !important;
+  padding-bottom: 0% !important;
+}
+
+.order-status__progress {
+  padding-top: 11% !important;
+}
+
+.table th {
+  background-color: white;
+}

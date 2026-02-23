@@ -871,7 +871,7 @@ function OrdersInvoiceDetailCustomerLayer() {
                             if (editOrderStatus === "pending")
                               return !["shipped", "delivered"].includes(status);
                             if (editOrderStatus === "packed")
-                              return !["shipped", "delivered"].includes(status);
+                              return !["delivered"].includes(status);
                             if (editOrderStatus === "shipped")
                               return !["pending", "cancelled"].includes(status);
                             if (editOrderStatus === "delivered")

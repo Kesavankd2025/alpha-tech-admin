@@ -386,7 +386,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {canViewAttributes && (
+                  {/* {canViewAttributes && (
                     <li>
                       <NavLink
                         to="/attribute"
@@ -395,6 +395,19 @@ const MasterLayout = ({ children }) => {
                         }
                       >
                         Attributes
+                      </NavLink>
+                    </li>
+                  )} */}
+
+                  {canViewTaxList && (
+                    <li>
+                      <NavLink
+                        to="/tax-list"
+                        className={(navData) =>
+                          navData.isActive ? "active-page" : ""
+                        }
+                      >
+                        Tax List
                       </NavLink>
                     </li>
                   )}
@@ -422,7 +435,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {canViewOfferCreations && (
+                  {/* {canViewOfferCreations && (
                     <li>
                       <NavLink
                         to="/offer-creations"
@@ -458,7 +471,6 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* {canViewShopType && ( */}
                   <li>
                     <NavLink
                       to="/shop-type"
@@ -469,8 +481,6 @@ const MasterLayout = ({ children }) => {
                       Shop Type
                     </NavLink>
                   </li>
-                  {/* )} */}
-                  {/* {canViewVehicles && ( */}
                   <li>
                     <NavLink
                       to="/vehicle-list"
@@ -481,8 +491,6 @@ const MasterLayout = ({ children }) => {
                       Vehicles
                     </NavLink>
                   </li>
-                  {/* )} */}
-                  {/* {canViewBankDetails && ( */}
                   <li>
                     <NavLink
                       to="/Bank-details"
@@ -502,8 +510,7 @@ const MasterLayout = ({ children }) => {
                     >
                       Expense type
                     </NavLink>
-                  </li>
-                  {/* )} */}
+                  </li> */}
                 </ul>
               </li>
             )}
@@ -515,7 +522,7 @@ const MasterLayout = ({ children }) => {
                   <span>Orders</span>
                 </Link>
                 <ul className="sidebar-submenu">
-                  {canViewOrderList && (
+                  {/* {canViewOrderList && (
                     <li>
                       <NavLink
                         to="/order-list"
@@ -526,8 +533,8 @@ const MasterLayout = ({ children }) => {
                         Wholesale Orders
                       </NavLink>
                     </li>
-                  )}
-                  {canViewRetailerOrderList && (
+                  )} */}
+                  {/* {canViewRetailerOrderList && (
                     <li>
                       <NavLink
                         to="/retailer-order-list"
@@ -538,7 +545,7 @@ const MasterLayout = ({ children }) => {
                         Retailer Orders
                       </NavLink>
                     </li>
-                  )}
+                  )} */}
                   {canViewCustomerOrder && (
                     <li>
                       <NavLink
@@ -551,7 +558,19 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {canViewPosOrder && (
+                  {canViewCustomerOrder && (
+                    <li>
+                      <NavLink
+                        to="/customer-cancel-order"
+                        className={(navData) =>
+                          navData.isActive ? "active-page" : ""
+                        }
+                      >
+                        Cancel Orders
+                      </NavLink>
+                    </li>
+                  )}
+                  {/* {canViewPosOrder && (
                     <li>
                       <NavLink
                         to="/pos-order"
@@ -562,7 +581,7 @@ const MasterLayout = ({ children }) => {
                         POS Orders
                       </NavLink>
                     </li>
-                  )}
+                  )} */}
                   {canViewReturnRequest && (
                     <li>
                       <NavLink
@@ -575,7 +594,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {canViewOrderReport && (
+                  {/* {canViewOrderReport && (
                     <li>
                       <NavLink
                         to="/order-report"
@@ -586,7 +605,7 @@ const MasterLayout = ({ children }) => {
                         Order Reports
                       </NavLink>
                     </li>
-                  )}
+                  )} */}
                 </ul>
               </li>
             )}
@@ -621,6 +640,18 @@ const MasterLayout = ({ children }) => {
                         }
                       >
                         User Role & Permission
+                      </NavLink>
+                    </li>
+                  )}
+                  {canViewCustomerList && (
+                    <li>
+                      <NavLink
+                        to="/customer-list"
+                        className={(navData) =>
+                          navData.isActive ? "active-page" : ""
+                        }
+                      >
+                        Customer List
                       </NavLink>
                     </li>
                   )}
@@ -698,7 +729,7 @@ const MasterLayout = ({ children }) => {
                 </ul>
               </li>
             )}
-            {canViewCRM && (
+            {/* {canViewCRM && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:point-of-sale" className="menu-icon" />
@@ -744,8 +775,9 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
-            {canViewCustomer && (
+            )} */}
+
+            {/* {canViewCustomer && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:account" className="menu-icon" />
@@ -792,8 +824,9 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
-            {canViewWholesalers && (
+            )} */}
+
+            {/* {canViewWholesalers && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:cart-percent" className="menu-icon" />
@@ -813,17 +846,17 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* <li>
-                  <NavLink
-                    to='/wholesale-assign-salesman'
-                    className={(navData) =>
-                      navData.isActive ? "active-page" : ""
-                    }
-                  >
+                  <li>
+                    <NavLink
+                      to='/wholesale-assign-salesman'
+                      className={(navData) =>
+                        navData.isActive ? "active-page" : ""
+                      }
+                    >
 
-                    Assign Salesman
-                  </NavLink>
-                </li> */}
+                      Assign Salesman
+                    </NavLink>
+                  </li>
                   {canViewWholesalerOrderHistory && (
                     <li>
                       <NavLink
@@ -849,17 +882,17 @@ const MasterLayout = ({ children }) => {
                     </li>
                   )}
 
-                  {/* <li>
-                  <NavLink
-                    to='/wholesaler-adjust-credit-limit'
-                    className={(navData) =>
-                      navData.isActive ? "active-page" : ""
-                    }
-                  >
+                  <li>
+                    <NavLink
+                      to='/wholesaler-adjust-credit-limit'
+                      className={(navData) =>
+                        navData.isActive ? "active-page" : ""
+                      }
+                    >
 
-                    Adjust Credit Limit
-                  </NavLink>
-                </li> */}
+                      Adjust Credit Limit
+                    </NavLink>
+                  </li>
                   {canViewWholesalerPaymentDues && (
                     <li>
                       <NavLink
@@ -886,13 +919,12 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
+            )} */}
 
             {/* retailer */}
-            {canViewRetailers && (
+            {/* {canViewRetailers && (
               <li className="dropdown">
                 <Link to="#">
-                  {/* <Icon icon="mdi:order-bool-ascending" className="menu-icon" /> */}
                   <Icon icon="bx:user-voice" className="menu-icon" />
 
                   <span>Retailers</span>
@@ -910,17 +942,17 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* <li>
-                  <NavLink
-                    to='/retailer-assign-salesman'
-                    className={(navData) =>
-                      navData.isActive ? "active-page" : ""
-                    }
-                  >
+                  <li>
+                    <NavLink
+                      to='/retailer-assign-salesman'
+                      className={(navData) =>
+                        navData.isActive ? "active-page" : ""
+                      }
+                    >
 
-                    Assign Salesman
-                  </NavLink>
-                </li> */}
+                      Assign Salesman
+                    </NavLink>
+                  </li>
                   {canViewRetailerOrderHistory && (
                     <li>
                       <NavLink
@@ -945,17 +977,17 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* <li>
-                  <NavLink
-                    to='/retailer-adjust-credit-limit'
-                    className={(navData) =>
-                      navData.isActive ? "active-page" : ""
-                    }
-                  >
+                  <li>
+                    <NavLink
+                      to='/retailer-adjust-credit-limit'
+                      className={(navData) =>
+                        navData.isActive ? "active-page" : ""
+                      }
+                    >
 
-                    Adjust Credit Limit
-                  </NavLink>
-                </li> */}
+                      Adjust Credit Limit
+                    </NavLink>
+                  </li>
                   {canViewRetailerPaymentDues && (
                     <li>
                       <NavLink
@@ -982,8 +1014,9 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
-            {canViewVendors && (
+            )} */}
+
+            {/* {canViewVendors && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:store-cog-outline" className="menu-icon" />
@@ -1015,7 +1048,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* <li>
+                  <li>
                   <NavLink
                     to='/vendor-order-history'
                     className={(navData) =>
@@ -1025,7 +1058,7 @@ const MasterLayout = ({ children }) => {
 
                     Vendor Order History
                   </NavLink>
-                </li> */}
+                </li>
                   {canViewVendorPayments && (
 
                     <li>
@@ -1066,8 +1099,10 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
-            {canViewSalesman && (
+            )} */}
+
+            {/* salesman */}
+            {/* {canViewSalesman && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:account-check" className="menu-icon" />
@@ -1151,13 +1186,12 @@ const MasterLayout = ({ children }) => {
 
                 </ul>
               </li>
-            )}
+            )} */}
 
             {/* delivery */}
-            {canViewDelivery && (
+            {/* {canViewDelivery && (
               <li className="dropdown">
                 <Link to="#">
-                  {/* <Icon icon="mdi:order-bool-ascending" className="menu-icon" /> */}
                   <Icon icon="bx:building-house" className="menu-icon" />
 
                   <span>Delivery</span>
@@ -1175,16 +1209,16 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* <li>
-                  <NavLink
-                    to="/assign-delivery-person"
-                    className={(navData) =>
-                      navData.isActive ? "active-page" : ""
-                    }
-                  >
-                    Assign Delivery Person
-                  </NavLink>
-                </li> */}
+                  <li>
+                    <NavLink
+                      to="/assign-delivery-person"
+                      className={(navData) =>
+                        navData.isActive ? "active-page" : ""
+                      }
+                    >
+                      Assign Delivery Person
+                    </NavLink>
+                  </li>
                   {canViewDeliveryTrackingUpdates && (
                     <li>
                       <NavLink
@@ -1209,7 +1243,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* {canViewDeliveryPerformancePayroll && (
+                  {canViewDeliveryPerformancePayroll && (
                     <li>
                       <NavLink
                         to="/delivery-performance-payroll"
@@ -1220,7 +1254,7 @@ const MasterLayout = ({ children }) => {
                         Delivery Performance
                       </NavLink>
                     </li>
-                  )} */}
+                  )}
                   {canViewDeliveryReports && (
                     <li>
                       <NavLink
@@ -1255,8 +1289,9 @@ const MasterLayout = ({ children }) => {
                   </li>
                 </ul>
               </li>
-            )}
-            {canViewPaymentAndCredit && (
+            )} */}
+
+            {/* {canViewPaymentAndCredit && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="mdi:book-open-variant" className="menu-icon" />
@@ -1338,7 +1373,9 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
+            )} */}
+
+
             {/* warehouse */}
             {/* <li className="dropdown">
               <Link to="#">
@@ -1436,10 +1473,9 @@ const MasterLayout = ({ children }) => {
             </li> */}
 
             {/* Inventory */}
-            {canViewInventory && (
+            {/* {canViewInventory && (
               <li className="dropdown">
                 <Link to="#">
-                  {/* <Icon icon="mdi:cart-arrow-right" className="menu-icon" /> */}
                   <Icon icon="bx:list-plus" className="menu-icon" />
 
                   <span>Inventory</span>
@@ -1495,9 +1531,10 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
+            )} */}
+
             {/* Petty Cash */}
-            {canViewPettyCash && (
+            {/* {canViewPettyCash && (
               <li className="dropdown">
                 <Link to="#">
                   <Icon icon="bx:receipt" className="menu-icon" />
@@ -1530,7 +1567,7 @@ const MasterLayout = ({ children }) => {
                       </NavLink>
                     </li>
                   )}
-                  {/* {canViewPettyCashReport && (
+                  {canViewPettyCashReport && (
                     <li>
                       <NavLink
                         to="/petty-cash-report"
@@ -1541,16 +1578,15 @@ const MasterLayout = ({ children }) => {
                         Petty Cash Reports
                       </NavLink>
                     </li>
-                  )} */}
+                  )}
                 </ul>
               </li>
-            )}
+            )} */}
 
             {/* Tax */}
-            {canViewTax && (
+            {/* {canViewTax && (
               <li className="dropdown">
                 <Link to="#">
-                  {/* <Icon icon="mdi:cart-arrow-right" className="menu-icon" /> */}
                   <Icon icon="fa-solid:file-invoice" className="menu-icon" />
 
                   <span>Tax</span>
@@ -1570,7 +1606,7 @@ const MasterLayout = ({ children }) => {
                   )}
                 </ul>
               </li>
-            )}
+            )} */}
 
             {/* Reports */}
             {canViewReports && (

@@ -35,7 +35,6 @@ function CustomerOrderLayer() {
     { key: "shipped", label: "Shipped" },
     { key: "delivered", label: "Delivered" },
     // { key: "return-initiated", label: "Return-initiated" },
-    { key: "cancelled", label: "Cancelled" },
   ];
 
   useEffect(() => {
