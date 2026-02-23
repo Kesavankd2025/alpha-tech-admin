@@ -1,5 +1,7 @@
 .th-title {
     text-align: start !important;
+    background-color: var(--primary-light) !important;
+    color: var(--primary-color) !important;
 }
 
 .align-checkbox {

@@ -183,13 +183,23 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
     const taxableAmount = itemTotal - itemDiscount;
     const taxAmount = taxableAmount * (taxRate / 100);
 
+    // return {
+    //   ...item,
+    //   ...product,
+    //   index: index + 1,
+    //   itemTotal: itemTotal,
+    //   itemDiscount: itemDiscount,
+    //   taxAmount: taxAmount,
+    // };
     return {
       ...item,
       ...product,
+      productName: product.productName || 'Product',
+      variantName: item.attributes?.variantName || 'Product',
+      quantity: item.quantity || 0,
       index: index + 1,
       itemTotal: itemTotal,
       itemDiscount: itemDiscount,
-      taxAmount: taxAmount,
     };
   });
 
@@ -283,29 +293,18 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
 
           {/* Center: Company Details */}
           <div style={{ textAlign: "center", width: "50%" }}>
-            <div
-              style={{
-                fontSize: "14px",
-                fontWeight: "bold",
-                marginBottom: "3px",
-              }}
-            >
-              RAMESH TRADERS
-            </div>
+            <div style={{ fontSize: "14px", fontWeight: "bold", marginBottom: "3px" }}>Alpha Technical Rubber Sheets</div>
             <div style={{ fontSize: "9px", lineHeight: "1.3" }}>
-              <div>442-A.V.G. COMPLEX, RANGAI GOWDER STREET,</div>
-              <div>COIMBATORE - 641001</div>
-              <div>
-                <strong>GSTIN:</strong> 33AAFFR5104D1ZS
-              </div>
-              <div>
-                <strong>Ph:</strong> 7550223510 / 3511 / 3512 / 3513
-              </div>
+              <div>W.L.L</div>
+              <div>Bldg 123, Road 456, Block 789 Manama,</div>
+              <div> Kingdom of Bahrain</div>
+              {/* <div><strong>Email:</strong> sales@alphatechrubber.com</div> */}
+              <div><strong>Ph:</strong> +973 1700 6820</div>
             </div>
           </div>
 
           {/* Right: FSSAI */}
-          <div style={{ width: "25%", textAlign: "right", fontSize: "9px" }}>
+          {/* <div style={{ width: "25%", textAlign: "right", fontSize: "9px" }}>
             <img
               src="/assets/images/logo/fssi-logo.png"
               alt="FSSAI Logo"
@@ -319,7 +318,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
             <div>
               <strong>FSSAI: 12419003002919</strong>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* Customer Details */}
         <div
@@ -370,7 +369,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
                   {shippingAddress.gstin || gstNumber || "N/A"}
                 </span>
               </div>
-              {InvoiceData && (
+              {/* {InvoiceData && (
                 <>
                   <div>
                     <strong>ACK NO:</strong>{" "}
@@ -385,7 +384,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
                     </span>
                   </div>
                 </>
-              )}
+              )} */}
             </div>
 
             <div
@@ -423,7 +422,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
               </div>
             </div>
           </div>
-          {InvoiceData && (
+          {/* {InvoiceData && (
             <div
               style={{
                 display: "flex",
@@ -437,7 +436,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
                 size={100}
               />
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Products Table */}
@@ -454,96 +453,33 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
             }}
           >
             <thead>
-              <tr
-                style={{
-                  backgroundColor: "#f0f0f0",
-                  borderBottom: "1px solid #000",
-                }}
-              >
-                <th style={{ ...thStyle, width: "6%" }}>S.No</th>
-                <th style={{ ...thStyle, width: "28%", textAlign: "left" }}>
-                  Product
-                </th>
-                <th style={{ ...thStyle, width: "9%" }}>HSN</th>
-                <th style={{ ...thStyle, width: "7%" }}>GST</th>
-                <th style={{ ...thStyle, width: "7%" }}>Pack</th>
-                <th style={{ ...thStyle, width: "7%" }}>BQty</th>
-                <th style={{ ...thStyle, width: "7%" }}>LQty</th>
-                <th style={{ ...thStyle, width: "9%" }}>Rate</th>
-                <th style={{ ...thStyle, width: "7%" }}>Disc</th>
-                <th style={{ ...thStyle, width: "11%" }}>Amount</th>
+              <tr style={{ backgroundColor: "#1a2238", color: "#fff", borderBottom: "1px solid #000" }}>
+                <th style={{ ...thStyle, padding: "12px", width: "5%" }}>S.No</th>
+                <th style={{ ...thStyle, padding: "12px", width: "35%", textAlign: "left" }}>Product</th>
+                <th style={{ ...thStyle, padding: "12px", width: "10%" }}>HSN</th>
+                <th style={{ ...thStyle, padding: "12px", width: "10%" }}>GST</th>
+                <th style={{ ...thStyle, padding: "12px", width: "10%" }}>Qty</th>
+                <th style={{ ...thStyle, padding: "12px", width: "10%" }}>Rate</th>
+                <th style={{ ...thStyle, padding: "12px", width: "8%" }}>Disc</th>
+                <th style={{ ...thStyle, padding: "12px", width: "12%" }}>Amount</th>
               </tr>
             </thead>
             <tbody>
-              {pageProducts.map((product, index) => (
-                <tr key={index}>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {product.index}
-                  </td>
-                  <td
-                    style={{
-                      ...tdStyle,
-                      textAlign: "left",
-                      fontWeight: "bold",
-                      fontSize: "10px",
-                    }}
-                  >
-                    {product.productName}
-                  </td>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {product.hsn || "N/A"}
-                  </td>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {product.taxRate}%
-                  </td>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {product?.packingType?.toUpperCase()}
-                  </td>
-                  <td
-                    style={{
-                      ...tdStyle,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontSize: "10px",
-                    }}
-                  >
-                    {product.fullPacks}
-                  </td>
-                  <td
-                    style={{
-                      ...tdStyle,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontSize: "10px",
-                    }}
-                  >
-                    {product.looseKg?.toFixed(2)}
-                  </td>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {formatCurrency(product.unitPrice)}
-                  </td>
-                  <td style={{ ...tdStyle, textAlign: "center" }}>
-                    {product.discount}
-                  </td>
-                  <td
-                    style={{
-                      ...tdStyle,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontSize: "10px",
-                    }}
-                  >
-                    {formatCurrency(product.itemTotal)}
-                  </td>
+              {pageProducts.map((p, i) => (
+                <tr key={i}>
+                  <td style={{ ...tdStyle, textAlign: "center" }}>{p.index}</td>
+                  <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold", fontSize: "10px" }}>{p.productName} - ({p.variantName})</td>
+                  <td style={{ ...tdStyle, textAlign: "center" }}>{p.hsn || "N/A"}</td>
+                  <td style={{ ...tdStyle, textAlign: "center" }}>{p.taxRate}%</td>
+                  <td style={{ ...tdStyle, textAlign: "center", fontWeight: "bold", fontSize: "10px" }}>{p.quantity || 0}</td>
+                  <td style={{ ...tdStyle, textAlign: "center" }}>{formatCurrency(p.unitPrice)}</td>
+                  <td style={{ ...tdStyle, textAlign: "center" }}>{p.discount || 0}</td>
+                  <td style={{ ...tdStyle, textAlign: "center", fontWeight: "bold", fontSize: "10px" }}>{formatCurrency(p.itemTotal)}</td>
                 </tr>
               ))}
-              {[...Array(emptyRows)].map((_, index) => (
-                <tr key={`empty-${index}`} style={{ height: "12px" }}>
-                  {Array(10)
-                    .fill(null)
-                    .map((_, i) => (
-                      <td key={i} style={tdStyle}></td>
-                    ))}
+              {[...Array(emptyRows)].map((_, i) => (
+                <tr key={`empty-${i}`} style={{ height: "12px" }}>
+                  {Array(8).fill(null).map((_, j) => <td key={j} style={tdStyle}></td>)}
                 </tr>
               ))}
             </tbody>
@@ -551,342 +487,81 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
         </div>
         {/* Footer only on last real page or footer-only page */}
         {((isLastPage && !needsExtraPage) || isFooterOnlyPage) && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "9px",
-              border: "1px solid #000",
-              padding: "5px",
-              gap: "5px",
-              flexShrink: 0,
-            }}
-          >
-            {/* Left Column */}
-            <div style={{ width: "50%" }}>
-              <div style={{ marginBottom: "8px" }}>
-                <strong>Total Items: {productDetails.length}</strong>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", border: "1px solid #000", padding: "5px", gap: "5px", flexShrink: 0 }}>
+            <div style={{ width: "50%", textAlign: "left" }}>
+              <div style={{ marginBottom: "8px", textAlign: "left" }}><strong>Total Items: {productDetails.length}</strong></div>
+              <div style={{ marginBottom: "8px", textAlign: "left" }}><strong>Total Weight: {orderData.totalWeight || totalWeight.toFixed(2)} kg</strong></div>
+              <div style={{ marginBottom: "10px", textAlign: "left" }}>
+                <div style={{ textAlign: "left" }}><strong>Amount in Words:</strong></div>
+                <div style={{ textAlign: "left" }}>{getAmountInWords(total)}</div>
               </div>
-              <div style={{ marginBottom: "8px" }}>
-                <strong>
-                  Total Weight:{" "}
-                  {orderData.totalWeight || totalWeight.toFixed(2)} kg
-                </strong>
-              </div>
-
-              <div style={{ marginBottom: "10px" }}>
-                <div>
-                  <strong>Amount in Words:</strong>
-                </div>
-                <div>{getAmountInWords(total)}</div>
-              </div>
-
-              {/* New GST Table */}
-              <div style={{ marginBottom: "8px" }}>
-                <table
-                  className="gstTable"
-                  style={{
-                    width: "100%",
-                    borderCollapse: "collapse",
-                    fontSize: "8px",
-                    border: "1px solid #000",
-                  }}
-                >
+              <div style={{ marginBottom: "8px", textAlign: "left" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "8px", border: "1px solid #000" }}>
                   <thead>
-                    <tr style={{ backgroundColor: "#f5f5f5" }}>
-                      <th style={{ ...thStyle, padding: "2px" }}>GST%</th>
-                      <th style={{ ...thStyle, padding: "2px" }}>Sale Amt</th>
-                      <th style={{ ...thStyle, padding: "2px" }}>GST</th>
-                      <th style={{ ...thStyle, padding: "2px" }}>CGST</th>
-                      <th style={{ ...thStyle, padding: "2px" }}>SGST</th>
+                    <tr style={{ backgroundColor: "#1a2238", color: "#fff" }}>
+                      <th style={{ ...thStyle, padding: "4px" }}>GST%</th>
+                      <th style={{ ...thStyle, padding: "4px" }}>Sale Amt</th>
+                      <th style={{ ...thStyle, padding: "4px" }}>GST</th>
+                      <th style={{ ...thStyle, padding: "4px" }}>CGST</th>
+                      <th style={{ ...thStyle, padding: "4px" }}>SGST</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(taxGroups)
-                      .filter(([rate]) => parseFloat(rate) > 0)
-                      .map(([rate, data]) => {
-                        const gstRate = parseFloat(rate);
-                        const saleAmount = data.totalAmount;
-                        const totalGst = data.totalTax;
-                        const cgst = totalGst / 2;
-                        const sgst = totalGst / 2;
-
-                        return (
-                          <tr key={`tax-${gstRate}`}>
-                            <td
-                              style={{
-                                ...tdStyle,
-                                textAlign: "center",
-                                padding: "2px",
-                              }}
-                            >
-                              {gstRate}%
-                            </td>
-                            <td
-                              style={{
-                                ...tdStyle,
-                                textAlign: "right",
-                                padding: "2px",
-                              }}
-                            >
-                              ₹{formatCurrency(saleAmount)}
-                            </td>
-                            <td
-                              style={{
-                                ...tdStyle,
-                                textAlign: "right",
-                                padding: "2px",
-                              }}
-                            >
-                              ₹{formatCurrency(totalGst)}
-                            </td>
-                            <td
-                              style={{
-                                ...tdStyle,
-                                textAlign: "right",
-                                padding: "2px",
-                              }}
-                            >
-                              ₹{formatCurrency(cgst)}
-                            </td>
-                            <td
-                              style={{
-                                ...tdStyle,
-                                textAlign: "right",
-                                padding: "2px",
-                              }}
-                            >
-                              ₹{formatCurrency(sgst)}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    {Object.keys(taxGroups).filter(
-                      (rate) => parseFloat(rate) > 0
-                    ).length === 0 && (
-                        <tr>
-                          <td
-                            style={{
-                              ...tdStyle,
-                              textAlign: "center",
-                              padding: "2px",
-                            }}
-                          >
-                            0%
-                          </td>
-                          <td
-                            style={{
-                              ...tdStyle,
-                              textAlign: "right",
-                              padding: "2px",
-                            }}
-                          >
-                            ₹{formatCurrency(subTotal)}
-                          </td>
-                          <td
-                            style={{
-                              ...tdStyle,
-                              textAlign: "right",
-                              padding: "2px",
-                            }}
-                          >
-                            ₹0.00
-                          </td>
-                          <td
-                            style={{
-                              ...tdStyle,
-                              textAlign: "right",
-                              padding: "2px",
-                            }}
-                          >
-                            ₹0.00
-                          </td>
-                          <td
-                            style={{
-                              ...tdStyle,
-                              textAlign: "right",
-                              padding: "2px",
-                            }}
-                          >
-                            ₹0.00
-                          </td>
-                        </tr>
-                      )}
+                    {Object.entries(taxGroups).filter(([r]) => parseFloat(r) > 0).map(([r, d]) => (
+                      <tr key={r}>
+                        <td style={{ ...tdStyle, textAlign: "center", padding: "2px" }}>{r}%</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹{formatCurrency(d.totalAmount)}</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹{formatCurrency(d.totalTax)}</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹{formatCurrency(d.totalTax / 2)}</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹{formatCurrency(d.totalTax / 2)}</td>
+                      </tr>
+                    ))}
+                    {Object.keys(taxGroups).filter((r) => parseFloat(r) > 0).length === 0 && (
+                      <tr>
+                        <td style={{ ...tdStyle, textAlign: "center", padding: "2px" }}>0%</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹{formatCurrency(subTotal)}</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹0.00</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹0.00</td>
+                        <td style={{ ...tdStyle, textAlign: "right", padding: "2px" }}>₹0.00</td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
-
-              <div style={{ marginBottom: "5px" }}>
-                <div>
-                  <strong>Bank: HDFC BANK</strong>
-                </div>
-                <div>
-                  <strong>A/C No:</strong> 50200065787602
-                </div>
-                <div>
-                  <strong>IFSC:</strong> HDFC0002407
-                </div>
+              <div style={{ marginBottom: "5px", textAlign: "left" }}>
+                <div style={{ textAlign: "left" }}><strong>Bank: HDFC BANK</strong></div>
+                <div style={{ textAlign: "left" }}><strong>A/C No:</strong> 50200065787602</div>
+                <div style={{ textAlign: "left" }}><strong>IFSC:</strong> HDFC0002407</div>
               </div>
-
-              <div style={{ fontSize: "7px" }}>
-                <div>Any Legal dispute solved by 1996 Arbitration act</div>
-                <div>in coimbatore jurisdiction only.</div>
-                <div>
-                  <strong>Declaration:</strong> We declare that this invoice
-                  shows the actual price of
-                </div>
-                <div>the goods and all particulars are true and correct.</div>
+              <div style={{ fontSize: "7px", textAlign: "left" }}>
+                <div style={{ textAlign: "left" }}>Any Legal dispute solved by 1996 Arbitration act in coimbatore jurisdiction only.</div>
+                <div style={{ textAlign: "left" }}><strong>Declaration:</strong> We declare that this invoice shows the actual price of the goods and all particulars are true and correct.</div>
               </div>
             </div>
-
-            {/* Right Column */}
             <div style={{ width: "40%" }}>
               <div style={{ textAlign: "right", marginBottom: "10px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <span>Total Amount (Gross) :</span>
-                  <span>₹{formatCurrency(totalGross)}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Total Amount (Gross) :</span><span>₹{formatCurrency(totalGross)}</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Item Discounts :</span><span>-₹{formatCurrency(itemDiscounts)}</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Sub Total :</span><span>₹{formatCurrency(totalSubTotal)}</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Fright :</span><span>₹{formatCurrency(shippingCharge)}</span></div>
+                {lessFrightChargee > 0 && <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Less Fright :</span><span>-₹{formatCurrency(lessFrightChargee)}</span></div>}
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2px" }}><span>Round Off :</span><span>₹{formatCurrency(roundoff)}</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #000", paddingTop: "3px", fontSize: "16px", fontWeight: "bold", marginTop: "5px" }}>
+                  <span>Net Amount :</span><span>₹{formatCurrency(total)}</span>
                 </div>
-
-                {/* Item Discounts */}
-                {/* {itemDiscounts > 0 && ( */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <span>Item Discounts :</span>
-                  <span>-₹{formatCurrency(itemDiscounts)}</span>
-                </div>
-                {/* )} */}
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <span>Sub Total :</span>
-                  <span>₹{formatCurrency(totalSubTotal)}</span>
-                </div>
-                {/* Order Discount */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <span>Fright :</span>
-                  <span>₹{formatCurrency(shippingCharge)}</span>
-                </div>
-                {lessFrightChargee > 0 && (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "2px",
-                    }}
-                  >
-                    <span>Less Fright :</span>
-                    <span>-₹{formatCurrency(lessFrightChargee)}</span>
-                  </div>
-                )}
-
-                {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
-                  <span>Total Tax Amt :</span>
-                  <span>₹{formatCurrency(tax)}</span>
-                </div> */}
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <span>Round Off :</span>
-                  <span>₹{formatCurrency(roundoff)}</span>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    borderTop: "1px solid #000",
-                    paddingTop: "3px",
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    marginTop: "5px",
-                  }}
-                >
-                  <span>Net Amount :</span>
-                  <span>₹{formatCurrency(total)}</span>
-                </div>
-                <div style={{ textAlign: "right", marginTop: "3px" }}>
-                  <strong>for RAMESH TRADERS</strong>
-                </div>
+                <div style={{ textAlign: "right", marginTop: "3px" }}><strong>for RAMESH TRADERS</strong></div>
               </div>
-
-              {/* QR Code */}
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  border: "1px solid #000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "5px auto",
-                }}
-              >
-                <img
-                  src="/assets/images/logo/RT-QR.jpg"
-                  alt="QR Code"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
+              <div style={{ width: "60px", height: "60px", border: "1px solid #000", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px auto" }}>
+                <img src="/assets/images/logo/RT-QR.jpg" alt="QR Code" style={{ width: "100%", height: "100%", objectFit: "contain" }} onError={(e) => { e.target.style.display = 'none' }} />
               </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginTop: "15px",
-                  paddingTop: "15px",
-                  fontSize: "10px",
-                }}
-              >
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px", paddingTop: "15px", fontSize: "10px" }}>
                 <div style={{ textAlign: "left" }}>RECEIVER SIGN</div>
-                <div style={{ textAlign: "right" }}>
-                  <strong>Authorized Signatory</strong>
-                </div>
+                <div style={{ textAlign: "right" }}><strong>Authorized Signatory</strong></div>
               </div>
             </div>
           </div>
         )}
-        {/* Page number */}
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "5px",
-            fontSize: "9px",
-            flexShrink: 0,
-          }}
-        >
-          Page {pageNumber + 1} of {totalPages + (needsExtraPage ? 1 : 0)}
-        </div>
+        <div style={{ textAlign: "center", marginTop: "5px", fontSize: "9px", flexShrink: 0 }}>Page {pageNumber + 1} of {totalPages + (needsExtraPage ? 1 : 0)}</div>
       </div>
     );
   };

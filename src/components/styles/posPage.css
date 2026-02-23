@@ -126,15 +126,21 @@
 
 /* POS Action Buttons */
 .pos-btn-cancel {
-  background-color: #ff4d4d !important;
-  border-color: #ff4d4d !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
   color: white !important;
   transition: all 0.3s ease;
 }
 
-.pos-btn-cancel:hover {
-  background-color: #cc0000 !important;
-  border-color: #cc0000 !important;
+.pos-btn-cancel:hover,
+.pos-btn-cancel:focus,
+.pos-btn-cancel:active,
+.pos-btn-cancel:focus-visible {
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+  color: white !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .pos-btn-hold {

@@ -2123,7 +2123,7 @@ const OfferPageLayer = () => {
         <div className="card-header text-white d-flex justify-content-end align-items-center gap-2">
           <button
             type="button"
-            className="btn btn-success text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"
+            className="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"
             onClick={() => openDiscountModal()}
           >
             <Icon icon="ic:baseline-plus" className="icon text-xl line-height-1" />
@@ -2132,7 +2132,7 @@ const OfferPageLayer = () => {
 
           <button
             type="button"
-            className="btn btn-success text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"
+            className="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"
             onClick={() => openPackageModal()}
           >
             <Icon icon="ic:baseline-plus" className="icon text-xl line-height-1" />

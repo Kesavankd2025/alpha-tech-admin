@@ -15,7 +15,7 @@ const CustomerOrders = () => {
       <MasterLayout>
 
         {/* Breadcrumb */}
-        <Breadcrumb title="Customer Order"  header="Customer Order List"/>
+        <Breadcrumb title="Customer Order" header="Customer Order List" />
 
         {/* EmailLayer */}
         {hasPermission ? <CustomerOrderLayer /> : <AccessDeniedLayer />}

@@ -9,6 +9,7 @@
 }
 
 .nav-pills.red-tabs .nav-link.active {
-  background-color: #f6993f !important;
+  /* background-color: #f6993f !important; */
+  background-color: var(--primary-color) !important;
   color: #fff !important;
 }

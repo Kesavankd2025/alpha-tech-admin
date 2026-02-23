@@ -183,27 +183,12 @@ import customerapiProvider from "../apiProvider/customerorderapi";
 export default function ReturnRequestLayer() {
     const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [activeTab, setActiveTab] = useState("Customer");
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState("");
     const [page, setPage] = useState(0);
     const [limit, setLimit] = useState(10);
     const [total, setTotal] = useState(0);
-
-    const [tabCounts, setTabCounts] = useState({
-        Customer: 0,
-        Wholesaler: 0,
-        Retailer: 0,
-        Pos: 0
-    });
-
-    const tabs = [
-        { key: "Customer", label: "Customer" },
-        { key: "Wholesaler", label: "Wholesaler" },
-        { key: "Retailer", label: "Retailer" },
-        { key: "Pos", label: "Pos" }
-    ];
 
     const statusClasses = {
         pending: "btn-subtle-warning",
@@ -233,28 +218,8 @@ export default function ReturnRequestLayer() {
     // };
 
     useEffect(() => {
-        fetchTabCounts();
         fetchOrders();
-    }, [page, limit, activeTab]);
-
-    const fetchTabCounts = async () => {
-        try {
-            const counts = {};
-            for (const tab of tabs) {
-                const input = {
-                    page: 0,
-                    limit: 1,
-                    type: tab.key.toLowerCase(),
-                    status: 'return-initiated',
-                };
-                const result = await apiProvider.getWholesaleOrder(input);
-                counts[tab.key] = result?.response?.total || 0;
-            }
-            setTabCounts(counts);
-        } catch (error) {
-            console.error("Error fetching tab counts:", error);
-        }
-    };
+    }, [page, limit]);
 
     const fetchOrders = async () => {
         setLoading(true);
@@ -262,7 +227,7 @@ export default function ReturnRequestLayer() {
             const input = {
                 page,
                 limit,
-                type: activeTab.toLowerCase(),
+                type: 'customer',
                 status: 'return-initiated',
             };
             const result = await apiProvider.getWholesaleOrder(input);
@@ -294,7 +259,6 @@ export default function ReturnRequestLayer() {
 
                 // Refresh the data
                 fetchOrders();
-                fetchTabCounts();
 
                 // Close the modal
                 handleCloseModal();
@@ -338,30 +302,8 @@ export default function ReturnRequestLayer() {
                     </div>
                 </div>
 
-                {/* Tabs */}
-                <ul className="nav nav-pills red-tabs nav-justified" role="tablist">
-                    {tabs.map((tab) => (
-                        <li className="nav-item" key={tab.key}>
-                            <button
-                                className={`nav-link ${activeTab === tab.key ? "active" : ""}`}
-                                onClick={() => {
-                                    setActiveTab(tab.key);
-                                    setPage(0);
-                                }}
-                            >
-                                <div className="d-flex flex-column align-items-center">
-                                    <span className="d-none d-sm-block">{tab.label}</span>
-                                    <span className="mt-1">
-                                        {tabCounts[tab.key] || 0}
-                                    </span>
-                                </div>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="tab-content p-3 text-muted">
-                    <div className="tab-pane fade show active">
+                <div className="p-3 text-muted">
+                    <div>
                         {loading ? (
                             <div className="text-center py-4">
                                 <div className="spinner-border text-primary" role="status">

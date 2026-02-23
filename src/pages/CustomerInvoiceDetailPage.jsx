@@ -14,7 +14,7 @@ const CustomerInvoiceDetailPage = () => {
         <Breadcrumb title="Customer Order Details" header="Customer Order Details" />
 
         {/* UsersListLayer */}
-        <OrdersInvoiceDetailCustomerLayer/>
+        <OrdersInvoiceDetailCustomerLayer />
 
       </MasterLayout>
 

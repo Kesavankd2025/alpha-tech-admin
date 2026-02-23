@@ -175,7 +175,7 @@ import CrmOrderPage from "./pages/CrmOrderPage";
 import CrmorderListPage from "./pages/CrmOrderListPage";
 import CrmListPage from "./pages/CrmUserListPage";
 import ProductReportPage from "./pages/ProductReportPage";
-
+import CustomerCancelOrderPage from "./pages/CustomerCancelOrderPage";
 
 
 function App() {
@@ -239,6 +239,7 @@ function App() {
         />
 
         <Route exact path="/customer-order" element={<CustomerOrders />} />
+        <Route exact path="/customer-cancel-order" element={<CustomerCancelOrderPage />} />
         <Route
           exact
           path="/customer-order-histroy"

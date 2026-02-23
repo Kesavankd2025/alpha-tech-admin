@@ -1,6 +1,8 @@
 .table th {
-    background-color: #fbe7ee !important;
-    color: #000;
+    /* background-color: #fbe7ee !important;
+    color: #000; */
+    background-color: var(--primary-light) !important;
+    color: var(--primary-color) !important;
     font-weight: 600;
     font-size: 14px;
     text-align: left;
@@ -19,4 +21,3 @@
 .table tbody tr:hover {
     background-color: #f0f8ff;
 }
-
