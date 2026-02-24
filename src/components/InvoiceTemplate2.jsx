@@ -110,6 +110,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
   };
 
   // Extract data from order
+  const data = orderData.data || orderData;
   const {
     orderCode = "",
     createdAt = "",
@@ -120,28 +121,35 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
     breakdown = {},
     paymentMode = "",
     invoiceId = "",
-    discount: orderDiscount = 0,
-    // itemDiscount,
-    totalDiscount,
+    discount: topDiscount = 0,
+    totalDiscount: topTotalDiscount = 0,
     gstNumber,
-  } = orderData.data || orderData;
+    subTotal: topSubTotal = 0,
+    total: topTotal = 0,
+    totalAmount: topTotalAmount = 0,
+    deliveryCharge = 0,
+    customerTotalTax = 0,
+    roundoff: topRoundoff = 0,
+  } = data;
 
   const {
-    subTotal = 0,
-    discount = 0,
-    roundoff = 0,
-    subtotalAfterDiscount = 0,
-    tax = 0,
-    shippingCharge = 0,
-    total = 0,
-  } = breakdown;
+    subTotal = topSubTotal,
+    discount = topDiscount,
+    roundoff = topRoundoff,
+    subtotalAfterDiscount: breakdownSubtotalAfterDiscount,
+    tax = customerTotalTax,
+    shippingCharge = deliveryCharge,
+    total = topTotal || topTotalAmount,
+  } = breakdown || {};
+
+  const subtotalAfterDiscount = breakdownSubtotalAfterDiscount || (subTotal - discount);
   const totalGross = subTotal + tax;
   const totalSubTotal = subtotalAfterDiscount + tax;
   const itemDiscounts = items.reduce(
     (total, item) => total + (item.discount || 0),
     0
   );
-  const lessFrightChargee = totalDiscount;
+  const lessFrightChargee = topTotalDiscount || 0;
   const overAllDiscount = itemDiscounts + lessFrightChargee;
   // Calculate tax breakdown for the new GST table
   const taxGroups = items.reduce((acc, item, index) => {
@@ -493,7 +501,7 @@ const InvoiceTemplate = ({ orderData, InvoiceData }) => {
               <div style={{ marginBottom: "8px", textAlign: "left" }}><strong>Total Weight: {orderData.totalWeight || totalWeight.toFixed(2)} kg</strong></div>
               <div style={{ marginBottom: "10px", textAlign: "left" }}>
                 <div style={{ textAlign: "left" }}><strong>Amount in Words:</strong></div>
-                <div style={{ textAlign: "left" }}>{getAmountInWords(total)}</div>
+                <div style={{ textAlign: "left" }}>{getAmountInWords(parseFloat(total || 0))}</div>
               </div>
               <div style={{ marginBottom: "8px", textAlign: "left" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "8px", border: "1px solid #000" }}>
